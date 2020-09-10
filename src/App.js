@@ -55,13 +55,13 @@ const geographyStyle = {
 
 // will generate random heatmap data on every call
 const getHeatMapData = (getDataOfTheDay) => {
-  if(getDataOfTheDay != null){
+  if (getDataOfTheDay != null) {
     console.log("entro");
     console.log(getDataOfTheDay[0][3]);
     return [
       { id: '01', state: 'Alabama', stateCases: getDataOfTheDay[0][3] },
       { id: '02', state: 'Alaska', stateCases: getDataOfTheDay[1][3] },
-      { id: '04', state: 'Arizona', stateCases: getDataOfTheDay[2][3]},
+      { id: '04', state: 'Arizona', stateCases: getDataOfTheDay[2][3] },
       { id: '05', state: 'Arkansas', stateCases: getDataOfTheDay[3][3] },
       { id: '06', state: 'California', stateCases: getDataOfTheDay[4][3] },
       { id: '08', state: 'Colorado', stateCases: getDataOfTheDay[5][3] },
@@ -115,8 +115,8 @@ const getHeatMapData = (getDataOfTheDay) => {
       { id: '55', state: 'Wisconsin', stateCases: getRandomInt() },
       { id: '56', state: 'Wyoming', stateCases: getRandomInt() }
     ];
-  } 
-  else{
+  }
+  else {
     return [
       { id: '01', state: 'Alabama', stateCases: 8 },
       { id: '02', state: 'Alaska', stateCases: getRandomInt() },
@@ -191,13 +191,13 @@ function states() {
     step: result => {
       if (result.data[0] === '2020-08-22') {
         justStates.push(result.data[1]);
-          confirmedCases.push(parseInt(result.data[3]));
-          confirmedDeaths.push(parseInt(result.data[4]));
+        confirmedCases.push(parseInt(result.data[3]));
+        confirmedDeaths.push(parseInt(result.data[4]));
       }
       if (result.data[0] !== "date") {
         completeData.push(result.data);
       }
-      
+
     },
     complete: result => {
       postReceive(justStates, confirmedCases, confirmedDeaths, completeData);
@@ -216,7 +216,7 @@ function makeRandomColor() {
 function createDropdownComponent(statesList, sortByState, data) {
   var element = (
     <DropdownButton as={ButtonGroup} key={'states'} id={`statesButton`} variant={'danger'} title={'Select a state'}>
-      <Dropdown.Item eventKey="allStates">All States</Dropdown.Item>
+      <Dropdown.Item eventKey="allStates" onClick={() => handleEvent(-1, sortByState, data)}>All States</Dropdown.Item>
       {Object.entries(statesList).map(([key, value], i) => (
         <Dropdown.Item eventKey={key} key={i} onClick={() => handleEvent(key, sortByState, data)}>{value}</Dropdown.Item>
       ))}
@@ -226,21 +226,25 @@ function createDropdownComponent(statesList, sortByState, data) {
 }
 
 function handleEvent(key, sortByState, data) {
-  console.log("data"); 
-  console.log(data);
-  var justDays = [];
-  var justCasesByDay = [];
-  for (var i = 0; i < data.length; i++) {
-    if(data[i][1] == sortByState[parseInt(key)].state){
-      justDays.push(data[i][0]);
-      justCasesByDay.push(data[i][3]);
+  if (parseInt(key) != -1) {
+    var justDays = [];
+    var justCasesByDay = [];
+    for (var i = 0; i < data.length; i++) {
+      if (data[i][1] == sortByState[parseInt(key)].state) {
+        justDays.push(data[i][0]);
+        justCasesByDay.push(data[i][3]);
+      }
     }
+    console.log(justCasesByDay);
+    createCardConfirmedCases(sortByState[parseInt(key)].cases);
+    createCardConfirmedDeaths(sortByState[parseInt(key)].deaths);
+    createCasesAndDeathsTable(sortByState[parseInt(key)]);
+    createLineChart(justDays, justCasesByDay);
   }
-  console.log(justCasesByDay);
-  createCardConfirmedCases(sortByState[parseInt(key)].cases);
-  createCardConfirmedDeaths(sortByState[parseInt(key)].deaths);
-  createCasesAndDeathsTable(sortByState[parseInt(key)]);
-  createLineChart(justDays, justCasesByDay);
+  else {
+    states();
+  }
+
 }
 
 function createCardConfirmedCases(sumCases) {
@@ -362,7 +366,7 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
   var sumDeaths = confirmedDeath.reduce((acc, value) => acc + value, 0);
 
   var dataForTable = [];
-  for(var i = 1; i < data.length; i++){
+  for (var i = 1; i < data.length; i++) {
     if (data[i][0] === '2020-08-22') {
       dataForTable.push(data[i]);
     }
@@ -452,7 +456,7 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
   for (var i = 0; i < data.length; i++) {
     if (data[i][0] === '2020-08-22') {
       getDataOfTheDay.push(data[i]);
-    } 
+    }
   }
 
   /////////sort by cases
@@ -572,7 +576,7 @@ function App() {
           <Row>
             <Col>
               <div className="map-container">
-              <ReactTooltip>{tooltipContent}</ReactTooltip>
+                <ReactTooltip>{tooltipContent}</ReactTooltip>
                 <ComposableMap projectionConfig={{
                   scale: 750,
                   center: [78.9629, 22.5937] // always in [East Latitude, North Longitude]
