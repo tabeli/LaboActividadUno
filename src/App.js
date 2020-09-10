@@ -213,22 +213,34 @@ function makeRandomColor() {
   return '#' + c;
 }
 
-function createDropdownComponent(statesList, sumCases, sumDeaths, sortByCases, sortByState) {
+function createDropdownComponent(statesList, sortByState, data) {
   var element = (
     <DropdownButton as={ButtonGroup} key={'states'} id={`statesButton`} variant={'danger'} title={'Select a state'}>
       <Dropdown.Item eventKey="allStates">All States</Dropdown.Item>
       {Object.entries(statesList).map(([key, value], i) => (
-        <Dropdown.Item eventKey={key} onClick={() => handleEvent(key, sumCases, sumDeaths, sortByCases, sortByState)}>{value}</Dropdown.Item>
+        <Dropdown.Item eventKey={key} key={i} onClick={() => handleEvent(key, sortByState, data)}>{value}</Dropdown.Item>
       ))}
     </DropdownButton>
   );
   return element;
 }
 
-function handleEvent(key, sumCases, sumDeaths, sortByCases, sortByState) {
+function handleEvent(key, sortByState, data) {
+  console.log("data"); 
+  console.log(data);
+  var justDays = [];
+  var justCasesByDay = [];
+  for (var i = 0; i < data.length; i++) {
+    if(data[i][1] == sortByState[parseInt(key)].state){
+      justDays.push(data[i][0]);
+      justCasesByDay.push(data[i][3]);
+    }
+  }
+  console.log(justCasesByDay);
   createCardConfirmedCases(sortByState[parseInt(key)].cases);
   createCardConfirmedDeaths(sortByState[parseInt(key)].deaths);
   createCasesAndDeathsTable(sortByState[parseInt(key)]);
+  createLineChart(justDays, justCasesByDay);
 }
 
 function createCardConfirmedCases(sumCases) {
@@ -259,8 +271,8 @@ function createCasesAndDeathsTable(sortByCases) {
   if (sortByCases.length > 1) {
     var casesAndDeathsTable = (
       <div>
-        {sortByCases.map((value) => (
-          <ListGroup>
+        {sortByCases.map((value, i) => (
+          <ListGroup key={i}>
             <ListGroup.Item variant="dark">{value.state}</ListGroup.Item>
             <ListGroup.Item variant="warning">Confirmed: {value.cases} </ListGroup.Item>
             <ListGroup.Item variant="danger">Deaths: {value.deaths} </ListGroup.Item>
@@ -355,8 +367,6 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
       dataForTable.push(data[i]);
     }
   }
-  console.log("alsmdlakm");
-  console.log(dataForTable);
   ////////////////merge Cases
   var map = new Map();
   var groups = [].concat(1);
@@ -380,7 +390,7 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
   /////////get cases By Day
   var map = new Map();
   var groups = [].concat(0);
-  var mergeCasesByDay = dataForTable.reduce((r, o) => {
+  var mergeCasesByDay = data.reduce((r, o) => {
     groups.reduce((m, k, i, { length }) => {
       var child;
       if (m.has(o[k])) return m.get(o[k]);
@@ -400,7 +410,7 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
   ////////////mergeDeaths
   var map = new Map();
   var groups = [].concat(1);
-  var mergeDeaths = dataForTable.reduce((r, o) => {
+  var mergeDeaths = data.reduce((r, o) => {
     groups.reduce((m, k, i, { length }) => {
       var child;
       if (m.has(o[k])) return m.get(o[k]);
@@ -493,7 +503,7 @@ function postReceive(justStates, confirmedCase, confirmedDeath, data) {
 
   console.log("cases");
   console.log(getDataOfTheDay);
-  var element = createDropdownComponent(statesList, sumCases, sumDeaths, sortByCases, sortByState);
+  var element = createDropdownComponent(statesList, sortByState, data);
   ReactDOM.render(element, document.getElementById("id"));
 }
 
@@ -570,7 +580,7 @@ function App() {
                   projection="geoMercator"
                   height={1120}
                   data-tip="">
-                  <ZoomableGroup center={[-97, 40]} disablePanning>
+                  <ZoomableGroup center={[-97, 40]} >
                     <Geographies geography={US_TOPO_JSON}>
                       {({ geographies }) =>
                         geographies.map(geo => {
