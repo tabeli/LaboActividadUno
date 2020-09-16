@@ -57,7 +57,7 @@ const geographyStyle = {
 const getHeatMapData = (getDataOfTheDay) => {
   if (getDataOfTheDay != null) {
     console.log("entro");
-    console.log(getDataOfTheDay[0][3]);
+    console.log(getDataOfTheDay);
     return [
       { id: '01', state: 'Alabama', stateCases: getDataOfTheDay[0][3] },
       { id: '02', state: 'Alaska', stateCases: getDataOfTheDay[1][3] },
@@ -71,49 +71,49 @@ const getHeatMapData = (getDataOfTheDay) => {
       { id: '12', state: 'Florida', stateCases: getDataOfTheDay[9][3] },
       { id: '13', state: 'Georgia', stateCases: getDataOfTheDay[10][3] },
       //{ id: '14', state: 'Guam', stateCases: getRandomInt() },
-      { id: '15', state: 'Hawaii', stateCases: getDataOfTheDay[11][3] },
-      { id: '16', state: 'Idaho', stateCases: getDataOfTheDay[12][3] },
-      { id: '17', state: 'Illinois', stateCases: getDataOfTheDay[13][3] },
-      { id: '18', state: 'Indiana', stateCases: getDataOfTheDay[14][3] },
-      { id: '19', state: 'Iowa', stateCases: getRandomInt() },
-      { id: '20', state: 'Kansas', stateCases: 59 },
-      { id: '21', state: 'Kentucky', stateCases: 59 },
-      { id: '22', state: 'Louisiana', stateCases: getRandomInt() },
-      { id: '23', state: 'Maine', stateCases: getRandomInt() },
-      { id: '24', state: 'Maryland', stateCases: getRandomInt() },
-      { id: '25', state: 'Massachussetts', stateCases: getRandomInt() },
-      { id: '26', state: 'Michigan', stateCases: getRandomInt() },
-      { id: '27', state: 'Minnesota', stateCases: 14 },
-      { id: '28', state: 'Mississippi', stateCases: getRandomInt() },
-      { id: '29', state: 'Missouri', stateCases: 15 },
-      { id: '30', state: 'Montana', stateCases: 17 },
-      { id: '31', state: 'Nebraska', stateCases: 17 },
-      { id: '32', state: 'Nevada', stateCases: getDataOfTheDay[32][3] },
-      { id: '33', state: 'New Hampshire', stateCases: getRandomInt() },
-      { id: '34', state: 'New Jersey', stateCases: 19 },
-      { id: '35', state: 'New Mexico', stateCases: 20 },
-      { id: '36', state: 'New York', stateCases: 59 },
-      { id: '37', state: 'North Carolina', stateCases: 25 },
-      { id: '38', state: 'North Dakota', stateCases: getRandomInt() },
+      { id: '15', state: 'Hawaii', stateCases: getDataOfTheDay[12][3] },
+      { id: '16', state: 'Idaho', stateCases: getDataOfTheDay[13][3] },
+      { id: '17', state: 'Illinois', stateCases: getDataOfTheDay[14][3] },
+      { id: '18', state: 'Indiana', stateCases: getDataOfTheDay[15][3] },
+      { id: '19', state: 'Iowa', stateCases: getDataOfTheDay[16][3] },
+      { id: '20', state: 'Kansas', stateCases: getDataOfTheDay[17][3] },
+      { id: '21', state: 'Kentucky', stateCases: getDataOfTheDay[18][3] },
+      { id: '22', state: 'Louisiana', stateCases: getDataOfTheDay[19][3] },
+      { id: '23', state: 'Maine', stateCases: getDataOfTheDay[20][3] },
+      { id: '24', state: 'Maryland', stateCases: getDataOfTheDay[21][3] },
+      { id: '25', state: 'Massachussetts', stateCases: getDataOfTheDay[22][3] },
+      { id: '26', state: 'Michigan', stateCases: getDataOfTheDay[23][3] },
+      { id: '27', state: 'Minnesota', stateCases: getDataOfTheDay[24][3] },
+      { id: '28', state: 'Mississippi', stateCases: getDataOfTheDay[25][3] },
+      { id: '29', state: 'Missouri', stateCases: getDataOfTheDay[26][3] },
+      { id: '30', state: 'Montana', stateCases: getDataOfTheDay[27][3] },
+      { id: '31', state: 'Nebraska', stateCases: getDataOfTheDay[28][3] },
+      { id: '32', state: 'Nevada', stateCases: getDataOfTheDay[29][3] },
+      { id: '33', state: 'New Hampshire', stateCases: getDataOfTheDay[30][3] },
+      { id: '34', state: 'New Jersey', stateCases: getDataOfTheDay[31][3] },
+      { id: '35', state: 'New Mexico', stateCases: getDataOfTheDay[32][3] },
+      { id: '36', state: 'New York', stateCases: getDataOfTheDay[33][3] },
+      { id: '37', state: 'North Carolina', stateCases: getDataOfTheDay[34][3] },
+      { id: '38', state: 'North Dakota', stateCases: getDataOfTheDay[35][3] },
       //{ id: '39', state: 'Northern Mariana Islands', stateCases: getRandomInt() },
-      { id: '39', state: 'Ohio', stateCases: getRandomInt() },
-      { id: '40', state: 'Oklahoma', stateCases: getRandomInt() },
-      { id: '41', state: 'Oregon', stateCases: getRandomInt() },
-      { id: '42', state: 'Pennsylvania', stateCases: getRandomInt() },
+      { id: '39', state: 'Ohio', stateCases: getDataOfTheDay[37][3] },
+      { id: '40', state: 'Oklahoma', stateCases: getDataOfTheDay[38][3] },
+      { id: '41', state: 'Oregon', stateCases: getDataOfTheDay[39][3] },
+      { id: '42', state: 'Pennsylvania', stateCases: getDataOfTheDay[40][3] },
       //{ id: '43', state: 'Puerto Rico', stateCases: getRandomInt() },
-      { id: '44', state: 'Rhode Island', stateCases: getRandomInt() },
-      { id: '45', state: 'South Carolina', stateCases: getRandomInt() },
-      { id: '46', state: 'South Dakota', stateCases: getRandomInt() },
-      { id: '47', state: 'Tennessee', stateCases: getRandomInt() },
-      { id: '48', state: 'Texas', stateCases: getRandomInt() },
-      { id: '49', state: 'Utah', stateCases: getRandomInt() },
-      { id: '50', state: 'Vermont', stateCases: getRandomInt() },
+      { id: '44', state: 'Rhode Island', stateCases: getDataOfTheDay[42][3] },
+      { id: '45', state: 'South Carolina', stateCases: getDataOfTheDay[43][3] },
+      { id: '46', state: 'South Dakota', stateCases: getDataOfTheDay[44][3] },
+      { id: '47', state: 'Tennessee', stateCases: getDataOfTheDay[45][3] },
+      { id: '48', state: 'Texas', stateCases: getDataOfTheDay[46][3] },
+      { id: '49', state: 'Utah', stateCases: getDataOfTheDay[47][3] },
+      { id: '50', state: 'Vermont', stateCases: getDataOfTheDay[48][3] },
       //{ id: '51', state: 'United States Virgin Islands', stateCases: getRandomInt() },
-      { id: '51', state: 'Virginia', stateCases: getRandomInt() },
-      { id: '53', state: 'Washington', stateCases: getRandomInt() },
-      { id: '54', state: 'West Virginia', stateCases: getRandomInt() },
-      { id: '55', state: 'Wisconsin', stateCases: getRandomInt() },
-      { id: '56', state: 'Wyoming', stateCases: getRandomInt() }
+      { id: '51', state: 'Virginia', stateCases: getDataOfTheDay[50][3] },
+      { id: '53', state: 'Washington', stateCases: getDataOfTheDay[51][3] },
+      { id: '54', state: 'West Virginia', stateCases: getDataOfTheDay[52][3] },
+      { id: '55', state: 'Wisconsin', stateCases: getDataOfTheDay[53][3] },
+      { id: '56', state: 'Wyoming', stateCases: getDataOfTheDay[54][3] }
     ];
   }
   else {
@@ -235,7 +235,6 @@ function handleEvent(key, sortByState, data) {
         justCasesByDay.push(data[i][3]);
       }
     }
-    console.log(justCasesByDay);
     createCardConfirmedCases(sortByState[parseInt(key)].cases);
     createCardConfirmedDeaths(sortByState[parseInt(key)].deaths);
     createCasesAndDeathsTable(sortByState[parseInt(key)]);
