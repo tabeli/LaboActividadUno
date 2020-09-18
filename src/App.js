@@ -15,7 +15,6 @@ import covidTwo from './covid2.png';
 import covidThree from './covid3.png';
 import { ComposableMap, ZoomableGroup, Geographies, Geography, Markers, Marker } from 'react-simple-maps';
 import { scaleQuantile } from 'd3-scale';
-import { geoAlbersUsa } from 'd3-geo';
 import ReactTooltip from 'react-tooltip';
 
 const US_TOPO_JSON = require('./us-states.json');
@@ -36,7 +35,7 @@ const COLOR_RANGE = [
 const DEFAULT_COLOR = '#EEE';
 
 const getRandomInt = () => {
-  return parseInt(Math.random() * 100);
+  return parseInt(Math.random() * 500000);
 };
 
 const geographyStyle = {
@@ -118,41 +117,41 @@ const getHeatMapData = (getDataOfTheDay) => {
   }
   else {
     return [
-      { id: '01', state: 'Alabama', stateCases: 8 },
+      { id: '01', state: 'Alabama', stateCases: getRandomInt() },
       { id: '02', state: 'Alaska', stateCases: getRandomInt() },
       { id: '04', state: 'Arizona', stateCases: getRandomInt() },
       { id: '05', state: 'Arkansas', stateCases: getRandomInt() },
       { id: '06', state: 'California', stateCases: getRandomInt() },
-      { id: '08', state: 'Colorado', stateCases: 21 },
-      { id: '09', state: 'Connecticut', stateCases: 22 },
+      { id: '08', state: 'Colorado', stateCases: getRandomInt() },
+      { id: '09', state: 'Connecticut', stateCases: getRandomInt() },
       { id: '10', state: 'Delaware', stateCases: getRandomInt() },
-      { id: '11', state: 'District of Columbia', stateCases: 24 },
-      { id: '12', state: 'Florida', stateCases: 26 },
-      { id: '13', state: 'Georgia', stateCases: 27 },
+      { id: '11', state: 'District of Columbia', stateCases: getRandomInt() },
+      { id: '12', state: 'Florida', stateCases: getRandomInt() },
+      { id: '13', state: 'Georgia', stateCases: getRandomInt() },
       //{ id: '14', state: 'Guam', stateCases: getRandomInt() },
       { id: '15', state: 'Hawaii', stateCases: getRandomInt() },
       { id: '16', state: 'Idaho', stateCases: getRandomInt() },
       { id: '17', state: 'Illinois', stateCases: getRandomInt() },
-      { id: '18', state: 'Indiana', stateCases: 59 },
+      { id: '18', state: 'Indiana', stateCases: getRandomInt() },
       { id: '19', state: 'Iowa', stateCases: getRandomInt() },
-      { id: '20', state: 'Kansas', stateCases: 59 },
-      { id: '21', state: 'Kentucky', stateCases: 59 },
+      { id: '20', state: 'Kansas', stateCases: getRandomInt() },
+      { id: '21', state: 'Kentucky', stateCases: getRandomInt() },
       { id: '22', state: 'Louisiana', stateCases: getRandomInt() },
       { id: '23', state: 'Maine', stateCases: getRandomInt() },
       { id: '24', state: 'Maryland', stateCases: getRandomInt() },
       { id: '25', state: 'Massachussetts', stateCases: getRandomInt() },
       { id: '26', state: 'Michigan', stateCases: getRandomInt() },
-      { id: '27', state: 'Minnesota', stateCases: 14 },
+      { id: '27', state: 'Minnesota', stateCases: getRandomInt() },
       { id: '28', state: 'Mississippi', stateCases: getRandomInt() },
-      { id: '29', state: 'Missouri', stateCases: 15 },
-      { id: '30', state: 'Montana', stateCases: 17 },
-      { id: '31', state: 'Nebraska', stateCases: 17 },
+      { id: '29', state: 'Missouri', stateCases: getRandomInt() },
+      { id: '30', state: 'Montana', stateCases: getRandomInt() },
+      { id: '31', state: 'Nebraska', stateCases: getRandomInt() },
       { id: '32', state: 'Nevada', stateCases: getRandomInt() },
       { id: '33', state: 'New Hampshire', stateCases: getRandomInt() },
-      { id: '34', state: 'New Jersey', stateCases: 19 },
-      { id: '35', state: 'New Mexico', stateCases: 20 },
-      { id: '36', state: 'New York', stateCases: 59 },
-      { id: '37', state: 'North Carolina', stateCases: 25 },
+      { id: '34', state: 'New Jersey', stateCases: getRandomInt() },
+      { id: '35', state: 'New Mexico', stateCases: getRandomInt() },
+      { id: '36', state: 'New York', stateCases: getRandomInt() },
+      { id: '37', state: 'North Carolina', stateCases: getRandomInt() },
       { id: '38', state: 'North Dakota', stateCases: getRandomInt() },
       //{ id: '39', state: 'Northern Mariana Islands', stateCases: getRandomInt() },
       { id: '39', state: 'Ohio', stateCases: getRandomInt() },
